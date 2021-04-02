@@ -1,0 +1,27 @@
+.h400{
+  height: 400px !important;
+}
+
+.Aligner-item {
+  max-width: 50%;
+}
+.Aligner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.prdCarro{
+  margin: 10px auto 10px auto;
+  width: 95%;
+}
+.mjeFalta{
+  color: blue;
+  font-size: small;
+}
+
+.mjeDesc{
+  font-size: small;
+  padding-left: 10px;
+}
+
+

@@ -1,0 +1,40 @@
+<mat-card>
+  <mat-card-header>
+    <mat-icon mat-card-avatar>article</mat-icon>
+    <mat-card-title>PRODUCTOS</mat-card-title>
+  </mat-card-header>
+
+
+  <div fxLayout="row wrap" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="10px">
+    <mat-card fxFlex="17" class="producto" *ngFor="let prod of productos">
+      <img src="http://{{ prod.image }}" alt="">
+      <div>
+        <b>{{ prod.brand }}</b> / {{ prod.description }}
+      </div>
+
+      <div>
+        <b>${{ prod.price | number:'.' }}</b>
+      </div>
+
+      <div style="text-align: center;">
+        <button *ngIf="!cantidadEnCarro(prod)" mat-raised-button color="primary" (click)="addCarro(prod);">Agregar</button>
+
+        <div *ngIf="cantidadEnCarro(prod)">
+          <button mat-raised-button color="warn" (click)="delCarro(prod);" class="btnDel">
+            <i class="mdi mdi-minus"></i>
+          </button>
+          {{cantidadEnCarro(prod)}}
+          <button mat-raised-button color="primary" (click)="addCarro(prod);" class="btnAdd">
+            <i class="mdi mdi-plus"></i>
+          </button>
+
+
+        </div>
+      </div>
+
+    </mat-card>
+  </div>
+
+
+
+</mat-card>

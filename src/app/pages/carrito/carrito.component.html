@@ -1,0 +1,60 @@
+<ul *ngIf="calculaTotal()">
+  <li>
+    <div class="drop-title">
+      <i class="mdi mdi-cart"></i>
+      Carro de compras
+    </div>
+  </li>
+  <li>
+    <mat-card class="prdCarro" fxLayout="row wrap" *ngFor="let prod of _PrdEnCarro">
+      <img fxFlex="20" src="http://{{ prod.producto.image }}" alt="">
+      <div fxFlex="60" class="Aligner">
+        <div class="Aligner-item">
+          <div><b>{{ prod.producto.brand }}</b></div>
+          <div>{{ prod.producto.description }}</div>
+          <div>$ Unidad: ${{ prod.producto.price | number:'.' }}</div>
+          <div><b>Cantidad: {{ prod.cantidad }}</b></div>
+        </div>
+      </div>
+      <div fxFlex="20" class="Aligner">
+        <div class="Aligner-item">
+          <b>${{ (prod.cantidad * prod.producto.price) | number:'.' }}</b>
+        </div>
+      </div>
+    </mat-card>
+  </li>
+  <li>
+    <div class="drop-title">
+      <div *ngFor="let el of getSinDesc()" class="mjeFalta">
+        Agrega ${{(el.mtoParaDesc - el.subTotal) | number:'.'}} más en productos <b>{{el.marca}}</b> y aprovecha un descuento total de ${{el.descuento | number:'.'}}.
+      </div>
+      <div>
+        Sub total de productos: ${{ calculaSubTotal() | number:'.' }}
+      </div>
+      <div>
+        Descuento por marca: $-{{ calculaDescuento() | number:'.' }}
+      </div>
+      <div *ngFor="let el of getConDesc()" class="mjeDesc">
+        *Se aplicó un descuento de <b>${{(el.descuento) | number:'.'}}</b> por haber comprado al menos <b>${{(el.mtoParaDesc) | number:'.'}}</b> en productos {{el.marca}}.
+      </div>
+      <div>
+        <b>Total a Pagar ${{ calculaTotal() | number:'.' }}</b>
+      </div>
+    </div>
+  </li>
+
+</ul>
+
+<ul *ngIf="!calculaTotal()">
+  <li>
+    <div class="drop-title">
+      <i class="mdi mdi-cart"></i>
+      Carro de compras
+    </div>
+  </li>
+  <li >
+    <div class="drop-title">
+      Su carrito está vacío.
+    </div>
+  </li>
+</ul>
